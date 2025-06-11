@@ -18,3 +18,30 @@ class User(models.Model):
     class Meta:
         verbose_name = 'Телеграм пользователь'
         verbose_name_plural = 'Телеграм пользователи'
+
+
+class Attachments(models.Model):
+    types = {
+        'photo': 'Фото',
+        'video': 'Видео',
+        'document': 'Документ'
+    }
+
+    type = models.CharField('Тип вложения', choices=types)
+    file = models.FileField('Файл', upload_to='media/mailing')
+    file_id = models.TextField(null=True)
+    mailing = models.ForeignKey('Mailing', on_delete=models.SET_NULL, null=True, related_name='attachments')
+
+    class Meta:
+        verbose_name = 'Вложение'
+        verbose_name_plural = 'Вложения'
+
+
+class Mailing(models.Model):
+    text = models.TextField('Текст', blank=True, null=True)
+    datetime = models.DateTimeField('Дата/Время')
+    is_ok = models.BooleanField('Статус отправки', default=False)
+
+    class Meta:
+        verbose_name = 'Рассылка'
+        verbose_name_plural = 'Рассылки'

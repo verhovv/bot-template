@@ -14,3 +14,18 @@ class UserAdmin(admin.ModelAdmin):
 
     def has_change_permission(self, request, obj=None):
         return False
+
+
+class AttachmentsInline(admin.TabularInline):
+    model = Attachments
+
+    exclude = ('file_id',)
+
+    extra = 0
+
+
+@admin.register(Mailing)
+class MailingAdmin(admin.ModelAdmin):
+    list_display = ['datetime', 'text', 'is_ok']
+    readonly_fields = ['is_ok']
+    inlines = [AttachmentsInline]
