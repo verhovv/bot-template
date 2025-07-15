@@ -3,7 +3,7 @@ from django.apps import AppConfig
 
 class PanelConfig(AppConfig):
     default_auto_field = 'django.db.models.BigAutoField'
-    name = 'panel'
+    name = 'web.panel'
 
     def ready(self):
-        import panel.signals
+        import web.panel.signals

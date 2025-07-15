@@ -28,7 +28,7 @@ class Attachments(models.Model):
     }
 
     type = models.CharField('Тип вложения', choices=types)
-    file = models.FileField('Файл', upload_to='media/mailing')
+    file = models.FileField('Файл', upload_to='web/media/mailing')
     file_id = models.TextField(null=True)
     mailing = models.ForeignKey('Mailing', on_delete=models.SET_NULL, null=True, related_name='attachments')
 

@@ -6,7 +6,7 @@ import requests
 from celery import shared_task
 
 from config import config
-from panel.models import Mailing, User
+from .models import Mailing, User
 
 
 @shared_task

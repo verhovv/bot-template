@@ -93,3 +93,6 @@ crashlytics-build.properties
 fabric.properties
 
 .idea
+
+web/media
+web/static_root

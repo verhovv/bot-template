@@ -1,4 +1,3 @@
-import os
 from pathlib import Path
 from config import config
 
@@ -17,7 +16,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'panel'
+    'web.panel'
 ]
 
 MIDDLEWARE = [
@@ -30,7 +29,7 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
-ROOT_URLCONF = 'web.urls'
+ROOT_URLCONF = 'web.core.urls'
 
 TEMPLATES = [
     {
@@ -47,7 +46,7 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = 'web.wsgi.application'
+WSGI_APPLICATION = 'core.wsgi.application'
 
 DATABASES = {
     'default': {
@@ -84,7 +83,7 @@ USE_I18N = True
 USE_TZ = True
 
 STATIC_URL = 'static/'
-STATIC_ROOT = 'static_root/'
+STATIC_ROOT = 'web/static_root/'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 

@@ -5,15 +5,15 @@ import sys
 import os
 
 sys.path.append(str(Path(__file__).resolve().parent.parent))
-os.environ.setdefault("DJANGO_SETTINGS_MODULE", "web.settings")
+os.environ.setdefault("DJANGO_SETTINGS_MODULE", "web.core.settings")
 django.setup()
 
 from aiogram import Bot, Dispatcher
 from config import config
 import asyncio
 
-from handlers import router
-from middlewares import UserMiddleware
+from core.handlers import router
+from core.middlewares import UserMiddleware
 from aiogram.utils.callback_answer import CallbackAnswerMiddleware
 
 

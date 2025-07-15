@@ -16,10 +16,10 @@ services:
       context: ../
       dockerfile: .docker/default/Dockerfile
     command: >
-      sh -c "python manage.py makemigrations &&
-             python manage.py migrate &&
-             python manage.py collectstatic --noinput &&
-             python manage.py runserver 0.0.0.0:8000"
+      sh -c "python web/manage.py makemigrations &&
+             python web/manage.py migrate &&
+             python web/manage.py collectstatic --noinput &&
+             python web/manage.py runserver 0.0.0.0:8000"
     volumes:
       - ..:/app
     depends_on:
@@ -41,7 +41,7 @@ services:
     build:
       context: ../
       dockerfile: .docker/default/Dockerfile
-    command: celery -A web worker --loglevel=info --pool=solo
+    command: celery -A web.core worker --loglevel=info --pool=solo
     volumes:
       - ..:/app
     depends_on:
@@ -52,7 +52,7 @@ services:
     build:
       context: ../
       dockerfile: .docker/default/Dockerfile
-    command: celery -A web beat --loglevel=info
+    command: celery -A web.core beat --loglevel=info
     volumes:
       - ..:/app
     depends_on:

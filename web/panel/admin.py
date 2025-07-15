@@ -1,5 +1,5 @@
 from django.contrib import admin
-from panel.models import *
+from web.panel.models import *
 
 
 @admin.register(User)

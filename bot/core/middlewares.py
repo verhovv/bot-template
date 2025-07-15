@@ -1,7 +1,7 @@
 from typing import Callable, Dict, Any, Awaitable
 from aiogram import BaseMiddleware
 from aiogram.types import Message, CallbackQuery
-from panel.models import User
+from web.panel.models import User
 
 class UserMiddleware(BaseMiddleware):
     async def __call__(
