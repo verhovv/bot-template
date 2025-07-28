@@ -1,4 +1,3 @@
-import logging
 from pathlib import Path
 import django
 import sys
@@ -12,27 +11,26 @@ from aiogram import Bot, Dispatcher
 from config import config
 import asyncio
 
-from bot.core.handlers import router
+from core.handlers import router
+from core.logger import setup_loger
 
 from aiogram.fsm.storage.redis import RedisStorage
 from redis.asyncio import Redis
 
 
 async def main():
+    setup_loger()
+
     bot = Bot(token=config.BOT_TOKEN)
 
-    redis = Redis(host=config.REDIS_HOST if not config.DEBUG else 'redis', port=config.REDIS_PORT, db=1)
+    redis = Redis(host=config.REDIS_HOST if not config.DEBUG else 'localhost', port=config.REDIS_PORT, db=1)
     storage = RedisStorage(redis)
 
     dp = Dispatcher(storage=storage)
     dp.include_router(router)
 
-    logging.basicConfig(level=logging.INFO)
-    logger = logging.getLogger(__name__)
-
     await dp.start_polling(bot)
 
 
 if __name__ == '__main__':
-    a = 0
     asyncio.run(main())

@@ -8,7 +8,6 @@ amqp==5.3.1
 annotated-types==0.7.0
 asgiref==3.8.1
 attrs==25.3.0
-better-exceptions==0.3.3
 billiard==4.2.1
 cachetools==5.5.2
 celery==5.5.3
@@ -23,6 +22,7 @@ frozenlist==1.6.0
 idna==3.10
 Jinja2==3.1.6
 kombu==5.5.4
+loguru==0.7.3
 magic-filter==1.0.12
 MarkupSafe==3.0.2
 multidict==6.4.4
