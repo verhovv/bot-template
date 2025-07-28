@@ -14,11 +14,17 @@ import asyncio
 
 from bot.core.handlers import router
 
+from aiogram.fsm.storage.redis import RedisStorage
+from redis.asyncio import Redis
+
 
 async def main():
     bot = Bot(token=config.BOT_TOKEN)
 
-    dp = Dispatcher()
+    redis = Redis(host=config.REDIS_HOST if not config.DEBUG else 'redis', port=config.REDIS_PORT, db=1)
+    storage = RedisStorage(redis)
+
+    dp = Dispatcher(storage=storage)
     dp.include_router(router)
 
     logging.basicConfig(level=logging.INFO)
