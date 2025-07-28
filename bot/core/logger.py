@@ -19,5 +19,5 @@ class InterceptHandler(logging.Handler):
         )
 
 
-def setup_loger():
+def setup_logger():
     logging.basicConfig(handlers=[InterceptHandler()], level=0, force=True)
