@@ -2,6 +2,8 @@ from pydantic_settings import BaseSettings
 
 
 class Config(BaseSettings):
+    COMPOSE_PROJECT_NAME: str
+
     BOT_TOKEN: str
 
     DEBUG: bool
