@@ -1,4 +1,5 @@
 # Telegram Bot Template
+Шаблон для разработки Телеграм Ботов с админ панелью django, используя Django ORM
 
 ## Django
 
