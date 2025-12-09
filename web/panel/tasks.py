@@ -98,7 +98,10 @@ def send_mailing(mailing_id: int):
         time.sleep(0.01)
 
     for user in User.objects.all():
-        send_mail_delay(user.id)
+        try:
+            send_mail_delay(user.id)
+        except:
+            pass
 
     mailing.is_ok = True
     mailing.save()
