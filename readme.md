@@ -1,4 +1,5 @@
 # Telegram Bot Template
+
 Шаблон для разработки Телеграм Ботов с админ панелью django, используя Django ORM
 
 ## Django
@@ -43,6 +44,7 @@ FSM States: `bot/core/states.py`
 `celery -A web.core worker --loglevel=info --pool=solo`
 
 ## Celery Beat
+
 Используется для выполнения периодических задач в фоне.
 
 Для корректной работы важно запускать celery beat из корневой директории проекта
@@ -124,10 +126,21 @@ sudo docker compose -f .docker/docker-compose.prod.yaml --env-file=.env "$@"
 Эти команды упрощают нам жизнь. Теперь для любой команды docker compose достаточно написать  
 `sh/[dev/prod]/compose.sh [up/stop/build/...]`
 
-## Deploy
+## Deploy (подойдет и для локальной развертки)
 
-1. Создаем (или копируем .env.example) и заполняем .env файл (с DEBUG=False)
-2. Собираем композицию контейнеров ```sh/prod/compose.sh up --build -d```
+1. Создаем (или копируем с .env.example) и заполняем .env файл (с DEBUG=False)
+2. Собираем и запускаем композицию контейнеров ```sh/prod/compose.sh up --build -d```
+   автоматически)
 3. Создаем суперюзера для django admin ```sh/prod/compose.sh exec web python web/manage.py createsuperuser```
 
+Миграции накатываются автоматически.
 Админ-панель запустится на 80 порту
+
+Чтобы обновить проект, достаточно:
+
+```shell
+sh/prod/compose.sh stop
+git pull
+sh/prod/compose.sh up
+```
+
